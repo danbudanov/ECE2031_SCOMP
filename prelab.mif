@@ -1,0 +1,24 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 1024;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..3FF] : 0000;  -- Default to NOP
+
+           000 : 400A;  --         CALL    CALC
+           001 : 1400;  --         JUMP	0
+           00A : 0430;  -- CALC:   LOAD    A       ;Load value stored in A
+           00B : 2431;  --         AND     B       ;AND with value stored in B
+           00C : 2C32;  --         XOR     C       ;XOR with value stored in C
+           00D : 0833;  --         STORE   D       ;Store value in D
+           00E : 4400;  -- 		RETURN
+           030 : 00FF;  -- A:      DW      &H00FF
+           031 : A5A5;  -- B:      DW      &HA5A5
+           032 : 3300;  -- C:      DW      &H3300
+           033 : 0000;  -- D:      DW      &H0000
+  END;
